@@ -20,58 +20,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/week', (req, res, next)=>{
-  weekRouter(req, res, next).then(res => {
-    console.log('her', res)
-  })
-})
-
-// app.use('/currentWeek', async function(req, res){
-//   let week = await weekController.getThisWeek()
-//   res.status(200).send(week)
-// })
-
-// function (req, res) {
-//   res.status(200).send([
-//     {
-//       id: 2,
-//       date: new Date(),
-//       notes: " long notes that are being added to this thing i'm building. werrrridd",
-//       rating: 2,
-//       features: "DPS-1795"
-//     },
-//     {
-//       id: 3,
-//       date: new Date(),
-//       notes: " long notes that are being added to this thing i'm building. werrrridd",
-//       rating: 3,
-//       features: "DPS-1795"
-//     },
-//     {
-//       id: 4,
-//       date: new Date(),
-//       notes: " long notes that are being added to this thing i'm building. werrrridd, long notes that are being added to this thing i'm building. werrrridd",
-//       rating: 3,
-//       features: "DPS-1795"
-//     },
-//     {
-//       id: 5,
-//       date: new Date(),
-//       notes: " long notes that are being added to this thing i'm building. werrrridd",
-//       rating: 2,
-//       features: "DPS-1795"
-//     },
-//     {
-//       id: 6,
-//       date: new Date(),
-//       notes: " long notes that are being added to this thing i'm building. werrrridd",
-//       rating: 2,
-//       features: "DPS-1795"
-//     }
-//   ])
-// })
-
-
+app.use('/week', weekRouter)
 
 app.use((req, res) => {
   const status = 404
