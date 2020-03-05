@@ -2,11 +2,12 @@ const db = require('../knex/knex.js')
 
 class WeekModel {
 
-  static getThisWeek(weekStart, weekEnd){
-    
+  static getWeek(startDate, endDate){
+    console.log('start date', startDate)
+    console.log('end date', endDate)
     return db('notes')
-      .where('created_at', '>=', weekStart)
-      .where('created_at', '<', weekEnd)
+      .where('date', '>=', startDate)
+      .where('date', '<=', endDate)
   }
    
   // static deleteEntryPhotos(trip_entry_id){

@@ -4,6 +4,7 @@ exports.up = function(knex) {
     table.string('note', 80).notNullable().defaultTo('')
     table.string('title', 80).defaultTo('')
     table.integer('rating')
+    table.date("date")
     table.timestamp('created_at').defaultTo(knex.fn.now())
   })
 };
