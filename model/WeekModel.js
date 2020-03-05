@@ -3,8 +3,6 @@ const db = require('../knex/knex.js')
 class WeekModel {
 
   static getWeek(startDate, endDate){
-    console.log('start date', startDate)
-    console.log('end date', endDate)
     return db('notes')
       .where('date', '>=', startDate)
       .where('date', '<=', endDate)
