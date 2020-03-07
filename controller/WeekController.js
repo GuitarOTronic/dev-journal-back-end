@@ -8,7 +8,6 @@ class WeekController {
     let endDate = moment(req.body.endDate).subtract(7, 'days').format("MM/DD/YYYY")
 
     Model.getWeek(startDate, endDate).then(weekNotes => {
-      console.log('weeknotes', weekNotes.length, weekNotes)
       if(weekNotes.length < 5) {
         if(weekNotes.length){
           // fill in gaps
@@ -41,7 +40,29 @@ class WeekController {
     let endDate = moment(req.body.endDate).add(7, 'days').format("MM/DD/YYYY")
 
     Model.getWeek(startDate, endDate).then(weekNotes => {
-      console.log('weeknotes', weekNotes.length, weekNotes)
+      if(weekNotes.length < 5) {
+        if(weekNotes.length){
+          // fill in gaps
+        }
+        else{
+          const weekArray = []
+          let numOfDays = 0
+          while(numOfDays < 5){
+            weekArray.push(moment(startDate).subtract(numOfDays, "days").format("MM/DD/YYYY"))
+            numOfDays++;
+          }
+          weekNotes = weekArray.map((date, i) =>{
+            return { 
+              id: `empty-${i}`,
+              note: '',
+              title: '',
+              rating: 0,
+              date: date,
+              created_at: null
+            }
+          })
+        }
+      }
       res.json({ weekNotes })
     })
   }
